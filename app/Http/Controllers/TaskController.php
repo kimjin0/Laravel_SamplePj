@@ -21,10 +21,18 @@ class TaskController extends Controller
 
     public function store(Request $request){
 
+        request()->validate([
+            'title' => 'required',
+            'body'  => 'required'
+        ]);
+        
         $task = Task::create([
             'title'=>$request->input('title'),
             'body'=>$request->input('body')
         ]);
+
+        // 위코드 아래코드로 대체 할 수 있다.
+        // $task = Task::create(request(['title','body']));;
         return redirect('/tasks/'.$task->id);
     }
     
