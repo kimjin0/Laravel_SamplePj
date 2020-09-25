@@ -9,13 +9,13 @@
 			@method('PUT')
 			@csrf
 			<label class="block" for="title">Title</label>
-			<input class="border border-gray-800 w-full @error('title') border border-red-700 @enderror" type="text" name="title" id="title" required value="{{ $task->title }}"><br>
+			<input class="border border-gray-800 w-full @error('title') border border-red-700 @enderror" type="text" name="title" id="title" required value="{{ old('title') ? old('title') : $task->title  }}"><br>
 			@error('title')
 				<small class="text-red-700">{{ $message }}</small>
 			@enderror
 			
 			<label class="block" for="body">Body</label>
-			<textarea class="border border-gray-800 w-full @error('body') border border-red-700 @enderror" name="body" id="body" cols="30" rows="10" required>{{ $task->body }}</textarea><br>
+			<textarea class="border border-gray-800 w-full @error('body') border border-red-700 @enderror" name="body" id="body" cols="30" rows="10" required>{{ old('body') ? old('body') : $task->body }}</textarea><br>
 			@error('body')
 				<small class="text-red-700">{{ $message }}</small>
 			@enderror
