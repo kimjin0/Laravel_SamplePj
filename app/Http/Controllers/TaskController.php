@@ -32,13 +32,14 @@ class TaskController extends Controller
             'title'=>$request->input('title'),
             'body'=>$request->input('body')
         ]);
+
         // 위코드 아래코드로 대체 할 수 있다.
         // $task = Task::create(request(['title','body']));
 
 
         return redirect('/tasks/'.$task->id);
     }
-    
+    // #####################################################    
     // public function show(Task $task){
     //     return view('tasks.show', [
     //         'task'=>$task
@@ -57,7 +58,7 @@ class TaskController extends Controller
             'task'=>$task
         ]);
     }
-
+    // #####################################################    
     // public function update(Task $task) {
     //     $task->update([
     //         'title' => request('title'),
@@ -73,6 +74,7 @@ class TaskController extends Controller
         
         return redirect('/tasks/'.$fetchedTask->task);
     }        
+    // #####################################################    
 
     public function destroy(Task $task) {
         $task->delete();
