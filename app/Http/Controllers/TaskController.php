@@ -39,9 +39,16 @@ class TaskController extends Controller
         return redirect('/tasks/'.$task->id);
     }
     
-    public function show(Task $task){
+    // public function show(Task $task){
+    //     return view('tasks.show', [
+    //         'task'=>$task
+    //     ]);
+    // }
+    // 위 주석코드와 결과는 같아요~~        
+    public function show($task){
+        $fetchedTask = Task::find($task);
         return view('tasks.show', [
-            'task'=>$task
+            'task'=>$fetchedTask
         ]);
     }
 
@@ -51,14 +58,21 @@ class TaskController extends Controller
         ]);
     }
 
-    public function update(Task $task) {
-        $task->update([
-            'title' => request('title'),
-            'body'  => request('body')
-        ]);
+    // public function update(Task $task) {
+    //     $task->update([
+    //         'title' => request('title'),
+    //         'body'  => request('body')
+    //     ]);
         
-        return redirect('/tasks/'.$task->id);
-    }    
+    //     return redirect('/tasks/'.$task->id);
+    // }    
+    // 위 주석코드와 결과는 같아요~~        
+    public function update(Request $request, $task) {
+        $fetchedTask = Task::find($task);
+        $fetchedTask->update($request->all());
+        
+        return redirect('/tasks/'.$fetchedTask->task);
+    }        
 
     public function destroy(Task $task) {
         $task->delete();
